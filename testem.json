@@ -1,0 +1,21 @@
+{
+  "framework":"mocha+chai",
+  "before_tests": "make build-tests",
+  "launch_in_dev": ["phantomjs", "node"],
+  "src_files": [
+    "index.js",
+    "lib/*.js",
+    "test/**/*.js"
+  ],
+  "launchers": {
+    "Node": {
+      "command": "make run-node-test",
+      "protocol": "tap"
+    }
+  },
+  "serve_files": [
+    "dist-test/bind-polyfill.js",
+    "dist-test/pouchdb-bundle.js",
+    "dist-test/test-bundle.js"
+  ]
+}

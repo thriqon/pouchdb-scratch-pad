@@ -1,0 +1,31 @@
+language: node_js
+
+services:
+  - couchdb
+
+node_js:
+  - "0.10"
+
+script:
+  - make build-tests $COMMAND
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - "sleep 5"
+
+    # Lets know what CouchDB we are playing with
+    # and make sure its logging debug
+  - "curl -X GET http://127.0.0.1:5984/"
+  - "curl -X PUT http://127.0.0.1:5984/_config/log/level -d '\"debug\"'"
+
+after_failure:
+  - "curl -X GET http://127.0.0.1:5984/_log?bytes=1000000"
+
+env:
+  matrix:
+    - COMMAND="run-tests-in ENV=node"
+    - COMMAND="run-tests-in ENV=firefox"
+    - COMMAND="run-tests-in ENV=phantomjs"
+    - COMMAND=run-coverage-test
+    - COMMAND="dist"

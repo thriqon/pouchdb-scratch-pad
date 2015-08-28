@@ -1,0 +1,13 @@
+.git*
+node_modules
+*~
+coverage
+npm-debug.log
+vendor/
+test/
+dist-test/
+lib/
+Makefile
+.*
+testem.json
+index.js
