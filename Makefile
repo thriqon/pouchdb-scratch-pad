@@ -1,5 +1,6 @@
 
 SOURCES := $(shell find lib -name '*.js')
+TESTS := $(shell find test -name '*.js')
 
 BABEL=node_modules/.bin/babel
 ROLLUP=node_modules/.bin/rollup
@@ -29,7 +30,7 @@ build-tests: dist-test/pouchdb-bundle.js dist-test/test-bundle.js
 dist-test/pouchdb-bundle.js: dist-test/pouchdb.js
 	${BROWSERIY} $< -o $@ -s PouchDB
 
-dist-test/test-bundle.js: test/test.js index.js $(SOURCES)
+dist-test/test-bundle.js: test/test.js $(TESTS) index.js $(SOURCES)
 	${JSHINT} $^
 	${ROLLUP} -i $< | ${BABEL} -m ignore -o $@
 

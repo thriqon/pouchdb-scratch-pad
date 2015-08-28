@@ -1,12 +1,17 @@
 /*jshint expr:true */
-/* global chai */
+/* global chai *//* global PouchDB */
+
 
 import ScratchPouch from '../index';
-chai.should();
+before(function () {
+  chai.should();
 
-describe('ScratchPouch Adapter', function () {
-  it('is valid', function () {
-    ScratchPouch.valid().should.be.true;
-  });
+  /* istanbul ignore next */
+  if (typeof window === 'undefined') {
+    // manually register adapter for NodeJS
+    PouchDB.adapter('scratch', ScratchPouch);
+  }
 });
 
+import './adapter';
+import './integration';

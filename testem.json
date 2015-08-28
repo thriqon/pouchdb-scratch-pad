@@ -1,10 +1,10 @@
 {
   "framework":"mocha+chai",
   "before_tests": "make build-tests",
-  "launch_in_dev": ["phantomjs", "node"],
+  "launch_in_dev": [],
   "src_files": [
     "index.js",
-    "lib/*.js",
+    "lib/**/*.js",
     "test/**/*.js"
   ],
   "launchers": {
