@@ -29,6 +29,7 @@
     "after",
     "it",
     "emit",
-    "PouchDB"
+    "PouchDB",
+    "chai"
   ]
 }

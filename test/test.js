@@ -13,5 +13,7 @@ before(function () {
   }
 });
 
-import './adapter';
+import './unit/adapter';
+import './unit/destroying';
+import './utils/enqueue';
 import './integration';
