@@ -1,5 +1,5 @@
 {
-  "framework":"mocha+chai",
+  "framework":"mocha",
   "before_tests": "make build-tests",
   "launch_in_dev": [],
   "src_files": [
@@ -14,6 +14,8 @@
     }
   },
   "serve_files": [
+    "node_modules/chai/chai.js",
+    "node_modules/chai-as-promised/lib/chai-as-promised.js",
     "dist-test/bind-polyfill.js",
     "dist-test/pouchdb-bundle.js",
     "dist-test/test-bundle.js"

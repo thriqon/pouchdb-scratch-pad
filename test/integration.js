@@ -16,4 +16,8 @@ describe('A scratch DB', function () {
   it('has type "scratch"', function () {
     this.db.type().should.be.equal('scratch');
   });
+
+  it('gives info', function () {
+    return this.db.info().should.eventually.be.an('object').and.include.keys('type');
+  });
 });

@@ -15,3 +15,4 @@ before(function () {
 
 import './adapter';
 import './integration';
+import './taskqueue';
