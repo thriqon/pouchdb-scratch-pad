@@ -2,7 +2,6 @@
 SOURCES := $(shell find lib -name '*.js')
 TESTS := $(shell find test -name '*.js')
 
-BABEL=node_modules/.bin/babel
 ROLLUP=node_modules/.bin/rollup
 UGLIFY=node_modules/.bin/uglifyjs
 BROWSERIY=node_modules/.bin/browserify
@@ -32,13 +31,13 @@ dist-test/pouchdb-bundle.js: dist-test/pouchdb.js
 
 dist-test/test-bundle.js: test/test.js $(TESTS) index.js $(SOURCES)
 	${JSHINT} $^
-	${ROLLUP} -i $< | ${BABEL} -m ignore -o $@
+	./build.js buildTestBundle
 
 dist: run-coverage-test dist/pouchdb.scratch.js dist/pouchdb.scratch.min.js
 
 dist/pouchdb.scratch.js: index.js $(SOURCES)
 	${JSHINT} $^
-	${ROLLUP} -i $< | ${BABEL} -m umd --module-id "pouchdb-scratch" -o $@
+	${ROLLUP} -i $< --format umd --name "pouchdb-scratch" -o $@
 
 dist/pouchdb.scratch.min.js: dist/pouchdb.scratch.js
 	${UGLIFY} $< -m -c -o $@

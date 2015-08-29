@@ -6,7 +6,7 @@ describe("utils::enqueue", function () {
     enqueue.should.be.a('function');
   });
   it('executes one job after another', function (done) {
-    let value = 0;
+    var value = 0;
     enqueue(function (x, y) {
       value += x * 10 + y;
     }, 2, 3);
