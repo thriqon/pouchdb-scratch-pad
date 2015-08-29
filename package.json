@@ -16,7 +16,7 @@
     "memory"
   ],
   "author": "Jonas Weber <mail@jonasw.de>",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/thriqon/pouchdb-scratch-pad/issues"
   },
