@@ -21,3 +21,10 @@ describe('A scratch DB', function () {
     return this.db.info().should.eventually.be.an('object').and.include.keys('type');
   });
 });
+
+describe('An anonymous DB', function () {
+  it('is createable', function () {
+    return new PouchDB({adapter: 'scratch', name: ''});
+  });
+  it('is different from another anonymous DB');
+});

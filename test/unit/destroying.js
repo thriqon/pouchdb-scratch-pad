@@ -12,6 +12,7 @@ describe('A scratch DB', function () {
     this.db._db.should.be.an('object');
     return this.db.destroy().then(() => expect(this.db._db).to.be.null);
   });
+  /* istanbul ignore next */
   it.skip('can be destroyed with an option object (skipped due to pouchdb/pouchdb#4219)',
       function () {
     this.db._db.should.be.an('object');
