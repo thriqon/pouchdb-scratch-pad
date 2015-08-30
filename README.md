@@ -2,6 +2,7 @@ PouchDB Scratch Pad Adapter
 ===========================
 
 [![Build Status](https://travis-ci.org/thriqon/pouchdb-scratch-pad.svg)](https://travis-ci.org/thriqon/pouchdb-scratch-pad)
+[![Coverage Status](https://coveralls.io/repos/thriqon/pouchdb-scratch-pad/badge.svg?branch=use-coveralls&service=github)](https://coveralls.io/github/thriqon/pouchdb-scratch-pad?branch=use-coveralls)
 
 Small and fast in-memory adapter for PouchDB. Perfect for caches and testing environments,
 where persistence is not neccessary.
