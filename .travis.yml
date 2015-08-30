@@ -36,5 +36,5 @@ env:
 
 matrix:
   include:
-    - node: "0.12"
+    - node_js: "0.12"
       env: COMMAND="run-tests-in ENV=node"
