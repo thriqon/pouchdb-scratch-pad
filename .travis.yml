@@ -9,7 +9,6 @@ cache:
 
 node_js:
   - "0.10"
-  - "0.12"
 
 script:
   - make build-tests $COMMAND
@@ -34,3 +33,8 @@ env:
     - COMMAND="run-tests-in ENV=phantomjs"
     - COMMAND=run-coverage-test
     - COMMAND="dist"
+
+matrix:
+  include:
+    - node_js: "0.12"
+      env: COMMAND="run-tests-in ENV=node"
