@@ -31,7 +31,7 @@ env:
     - COMMAND="run-tests-in ENV=node"
     - COMMAND="run-tests-in ENV=firefox"
     - COMMAND="run-tests-in ENV=phantomjs"
-    - COMMAND=run-coverage-test
+    - COMMAND=upload-coverage-results
     - COMMAND="dist"
 
 matrix:
