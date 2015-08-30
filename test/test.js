@@ -15,5 +15,6 @@ before(function () {
 
 import './unit/adapter';
 import './unit/destroying';
+import './unit/creation';
 import './utils/enqueue';
 import './integration';
