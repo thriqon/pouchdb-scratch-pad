@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 var rollup = require('rollup');
-var babel = require('babel');
 var fs = require('fs');
 
 function removePrefix(x) {
@@ -14,7 +13,8 @@ var tasks = {
       .then(function () { return rollup.rollup({ entry: 'test/test.js' }); })
       .then(function (bundle) { return bundle.generate({ sourceMap: true }); })
       .then(function (transformed) {
-        fs.writeFileSync('dist-test/test-bundle.js', transformed.code + "//# sourceMappingURL=test-bundle.js.map");
+        fs.writeFileSync('dist-test/test-bundle.js',
+            transformed.code + "//# sourceMappingURL=test-bundle.js.map");
         var map = transformed.map;
         map.sources = map.sources.map(removePrefix);
 
