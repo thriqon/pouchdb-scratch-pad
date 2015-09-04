@@ -9,17 +9,23 @@ describe('_getRevisionTree compared to memdown._getRevisionTree', function () {
     return this.local.destroy();
   });
 
+  function getRevisionTree(db, id) {
+    return new Promise(function (resolve, reject) {
+      db._getRevisionTree(id, function (err, res) {
+        /* istanbul ignore next */
+        if (err) { reject(err); } else { resolve(res); }
+      });
+    });
+  }
+
   ['local', 'scratchPad'].forEach(function (dbId) {
     it('when called for a non existing document ' + dbId + ' rejects', function () {
-      var db = this[dbId];
-      return new Promise(function (resolve, reject) {
-        db._getRevisionTree("__nonexistent", function (err) {
-          /* istanbul ignore else */
-          if (err) { resolve(err); } else { reject("should not resolve"); }
+      return getRevisionTree(this[dbId], "__nonexistent")
+        .then(/* istanbul ignore next */ function () {
+          throw "should not resolve";
+        }, function (error) {
+          error.should.be.eql(PouchDB.Errors.MISSING_DOC);
         });
-      }).then(function (error) {
-        error.should.be.eql(PouchDB.Errors.MISSING_DOC);
-      });
     });
   });
 });
