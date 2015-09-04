@@ -13,8 +13,6 @@ before(function () {
   }
 });
 
-import './unit/adapter';
-import './unit/destroying';
-import './unit/creation';
+import './unit';
 import './utils/enqueue';
 import './integration';
