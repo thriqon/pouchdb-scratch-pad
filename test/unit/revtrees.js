@@ -1,5 +1,5 @@
 
-describe('_getRevisionTree compared to memdown._getRevisionTree', function () {
+describe('_getRevisionTree compared to local._getRevisionTree', function () {
   beforeEach(function () {
     this.local = new PouchDB({name: new Date().getTime().toString(36)});
     this.scratchPad = new PouchDB({adapter: 'scratch', name: ''});
@@ -26,6 +26,33 @@ describe('_getRevisionTree compared to memdown._getRevisionTree', function () {
         }, function (error) {
           error.should.be.eql(PouchDB.Errors.MISSING_DOC);
         });
+    });
+  });
+
+  describe('when called for a single-revision document', function () {
+    beforeEach('store documents in databases', function () {
+      var self = this;
+      return Promise.all(['local', 'scratchPad']
+          .map(function (id) { return self[id]; })
+          .map(function (db) { return db.put({_id: 'single', a: 1}); }));
+    });
+    it('scratch gives an answer', function () {
+      return getRevisionTree(this['scratchPad'], "single")
+        .then(function (answer) { answer.should.be.ok; });
+    });
+    it('default adapter gives an answer', function (){
+      return getRevisionTree(this['local'], "single")
+        .then(function (answer) { answer.should.be.ok; });
+    });
+    it('both answer give the same answer', function () {
+      return Promise.all([
+        getRevisionTree(this['scratchPad'], "single"),
+        getRevisionTree(this['local'], "single")
+      ]).then(function (answers) {
+        answers[0][0].ids[0] = "000";
+        answers[1][0].ids[0] = "000";
+        answers[0].should.be.eql(answers[1]);
+      });
     });
   });
 });

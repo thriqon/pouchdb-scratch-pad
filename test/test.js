@@ -14,5 +14,5 @@ before(function () {
 });
 
 import './unit';
-import './utils/enqueue';
+import './utils.js';
 import './integration';
