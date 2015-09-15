@@ -15,8 +15,7 @@ describe('A scratch DB', function () {
       expect(self.db._db).to.be.null;
     });
   });
-  /* istanbul ignore next */
-  it.skip('can be destroyed with an option object (skipped due to pouchdb/pouchdb#4219)',
+  it('can be destroyed with an option object',
       function () {
     this.db._db.should.be.an('object');
     var self = this;
